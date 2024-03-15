@@ -7,12 +7,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <img src={frontmatter.image.url} style="width: 100%" />
   <h1>{frontmatter.title}</h1>
   <p>Written by {frontmatter.author}</p>
-  <p>Published on {frontmatter.pubDate}</p>
+  <p>Published on {frontmatter.pubDate.toString().slice(0, 10)}</p>
   <slot />
   <div>
     <div class="tag-heading">Tags</div>
     <div class="tag-w">
-      {frontmatter.tags.map((tag) => <div>{tag},</div>)}
+      {frontmatter.tags.map((tag) => <a href={`/tags/${tag}`}>{tag}, </a>)}
     </div>
   </div>
   <div class="articles">
@@ -33,7 +33,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .tag-w {
     display: flex;
     flex-direction: row;
-    gap: 0rem;
+    gap: 0.25rem;
   }
 
   .articles {
