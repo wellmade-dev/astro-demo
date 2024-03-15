@@ -1,0 +1,42 @@
+---
+const { frontmatter } = Astro.props;
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <img src={frontmatter.image.url} style="width: 100%" />
+  <h1>{frontmatter.title}</h1>
+  <p>Written by {frontmatter.author}</p>
+  <p>Published on {frontmatter.pubDate}</p>
+  <slot />
+  <div>
+    <div class="tag-heading">Tags</div>
+    <div class="tag-w">
+      {frontmatter.tags.map((tag) => <div>{tag},</div>)}
+    </div>
+  </div>
+  <div class="articles">
+    <div class="articles-heading">Want to read something else?</div>
+    <div class="articles-w">This is a placeholder article</div>
+  </div>
+</BaseLayout>
+
+<style>
+  .tag-heading,
+  .articles-heading {
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+  }
+
+  .tag-w {
+    display: flex;
+    flex-direction: row;
+    gap: 0rem;
+  }
+
+  .articles {
+    margin: 1rem 0;
+  }
+</style>
